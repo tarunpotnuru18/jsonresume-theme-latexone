@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= resume.basics.name %> - Resume</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Computer Modern", "Times New Roman", serif;
+        font-size: 11pt;
+        line-height: 1.3;
+        color: #000;
+        background: #fff;
+        padding: 0.8cm 1cm 0.5cm 1cm;
+        max-width: 21cm;
+        margin: 0 auto;
+      }
+
+      /* Header Styles */
+      .header {
+        text-align: center;
+        margin-bottom: 0.3cm;
+      }
+
+      .header h1 {
+        font-size: 24pt;
+        font-weight: bold;
+        margin-bottom: 0.3cm;
+        font-family: "Computer Modern", serif;
+      }
+
+      .header-info {
+        font-size: 10pt;
+        line-height: 1.2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.4cm;
+        align-items: center;
+      }
+
+      .header-info span {
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2cm;
+      }
+
+      .header-info a {
+        color: #000;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2cm;
+      }
+
+      .header-info i {
+        font-size: 9pt;
+        width: 12px;
+        text-align: center;
+      }
+
+      /* Section Styles */
+      .section {
+        margin-bottom: 0.5cm;
+      }
+
+      .section-title {
+        font-size: 12pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.3cm;
+        padding-bottom: 0.1cm;
+        border-bottom: 1px solid #000;
+      }
+
+      /* Summary */
+      .summary {
+        text-align: justify;
+        margin-bottom: 0.3cm;
+      }
+
+      /* Education */
+      .education-item {
+        margin-bottom: 0.4cm;
+      }
+
+      .education-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.1cm;
+      }
+
+      .education-left {
+        flex: 1;
+      }
+
+      .education-right {
+        text-align: right;
+        font-style: italic;
+        font-size: 10pt;
+      }
+
+      .education-title {
+        font-weight: bold;
+        font-size: 11pt;
+      }
+
+      .education-subtitle {
+        font-style: italic;
+        font-size: 10pt;
+        margin-top: 0.1cm;
+      }
+
+      /* Projects */
+      .project-item {
+        margin-bottom: 0.5cm;
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.1cm;
+      }
+
+      .project-left {
+        flex: 1;
+      }
+
+      .project-right {
+        text-align: right;
+        font-style: italic;
+        font-size: 10pt;
+      }
+
+      .project-title {
+        font-weight: bold;
+        font-size: 11pt;
+      }
+
+      .project-subtitle {
+        font-style: italic;
+        font-size: 10pt;
+        margin-top: 0.1cm;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1mm;
+        align-items: center;
+      }
+
+      .project-links a {
+        color: #000;
+        text-decoration: none;
+        font-size: 10pt;
+      }
+
+      /* Work Experience */
+      .work-item {
+        margin-bottom: 0.4cm;
+      }
+
+      .work-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.1cm;
+      }
+
+      .work-left {
+        flex: 1;
+      }
+
+      .work-right {
+        text-align: right;
+        font-size: 10pt;
+      }
+
+      .work-title {
+        font-weight: bold;
+        font-size: 11pt;
+      }
+
+      .work-location {
+        font-size: 10pt;
+        margin-top: 0.1cm;
+      }
+
+      /* Lists */
+      .item-list {
+        margin-left: 2.5ex;
+        margin-right: 1.5ex;
+        margin-bottom: 0.3cm;
+      }
+
+      .item-list li {
+        margin-bottom: 0.15cm;
+        text-align: justify;
+        font-size: 10pt;
+        line-height: 1.2;
+      }
+
+      .item-list li::marker {
+        content: "•";
+        font-size: 8pt;
+      }
+
+      /* Skills */
+      .skills-list {
+        margin-left: 0.1in;
+        list-style: none;
+      }
+
+      .skills-list li {
+        margin-bottom: 0.3mm;
+        font-size: 11pt;
+      }
+
+      .skills-list li strong {
+        font-weight: bold;
+      }
+
+      /* Print Styles */
+      @media print {
+        * {
+          margin: 0 !important;
+          padding: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        body {
+          font-size: 10pt !important;
+          line-height: 1.2 !important;
+          padding: 0.8cm 1cm 0.5cm 1cm !important;
+          max-width: none !important;
+          margin: 0 !important;
+          background: white !important;
+          color: black !important;
+        }
+
+        .header {
+          margin-bottom: 0.3cm !important;
+          text-align: center !important;
+        }
+
+        .header h1 {
+          font-size: 24pt !important;
+          font-weight: bold !important;
+          margin-bottom: 0.3cm !important;
+        }
+
+        .header-info {
+          font-size: 10pt !important;
+          gap: 0.25cm !important;
+          line-height: 1.2 !important;
+        }
+
+        .section {
+          margin-bottom: 0.5cm !important;
+        }
+
+        .section-title {
+          font-size: 12pt !important;
+          font-weight: bold !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.5px !important;
+          margin-bottom: 0.3cm !important;
+          padding-bottom: 0.1cm !important;
+          border-bottom: 1px solid #000 !important;
+        }
+
+        .summary {
+          margin-bottom: 0.3cm !important;
+          font-size: 11pt !important;
+          text-align: justify !important;
+        }
+
+        .education-item,
+        .project-item,
+        .work-item {
+          margin-bottom: 0.4cm !important;
+        }
+
+        .education-header,
+        .project-header,
+        .work-header {
+          margin-bottom: 0.1cm !important;
+        }
+
+        .education-title,
+        .project-title,
+        .work-title {
+          font-size: 11pt !important;
+          font-weight: bold !important;
+        }
+
+        .education-subtitle,
+        .project-subtitle {
+          font-size: 10pt !important;
+          font-style: italic !important;
+          margin-top: 0.1cm !important;
+        }
+
+        .education-right,
+        .project-right,
+        .work-right {
+          font-size: 10pt !important;
+          font-style: italic !important;
+        }
+
+        .work-location {
+          font-size: 10pt !important;
+          margin-top: 0.1cm !important;
+        }
+
+        .item-list {
+          margin-left: 2.5ex !important;
+          margin-right: 1.5ex !important;
+          margin-bottom: 0.3cm !important;
+        }
+
+        .item-list li {
+          font-size: 10pt !important;
+          line-height: 1.2 !important;
+          margin-bottom: 0.15cm !important;
+          text-align: justify !important;
+        }
+
+        .item-list li::marker {
+          content: "•" !important;
+          font-size: 8pt !important;
+        }
+
+        .skills-list {
+          margin-left: 0.1in !important;
+          list-style: none !important;
+        }
+
+        .skills-list li {
+          font-size: 11pt !important;
+          margin-bottom: 0.3mm !important;
+          line-height: 1.2 !important;
+        }
+
+        .project-links a,
+        .header-info a {
+          color: #000 !important;
+          text-decoration: none !important;
+        }
+
+        .project-links {
+          font-size: 10pt !important;
+        }
+
+        /* Ensure no page breaks in inappropriate places */
+        .section {
+          page-break-inside: avoid !important;
+        }
+
+        .education-item,
+        .project-item,
+        .work-item {
+          page-break-inside: avoid !important;
+        }
+
+        /* Force everything to fit on one page */
+        .header,
+        .section {
+          page-break-after: avoid !important;
+        }
+
+        /* Remove any conflicting styles */
+        .header-info span,
+        .header-info a {
+          display: inline-flex !important;
+          align-items: center !important;
+          gap: 0.2cm !important;
+        }
+
+        .header-info i {
+          font-size: 9pt !important;
+          width: 12px !important;
+          text-align: center !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1><%= resume.basics.name %></h1>
+      <div class="header-info">
+        <% if (resume.basics.location && (resume.basics.location.city ||
+        resume.basics.location.address)) { %>
+        <span
+          ><i class="fas fa-map-marker-alt"></i><%=
+          resume.basics.location.address || resume.basics.location.city %><%=
+          resume.basics.location.city && resume.basics.location.address ? ', ' +
+          resume.basics.location.city : '' %></span
+        >
+        <% } %> <% if (resume.basics.email) { %>
+        <span
+          ><a href="mailto:<%= resume.basics.email %>"
+            ><i class="far fa-envelope"></i><%= resume.basics.email %></a
+          ></span
+        >
+        <% } %> <% if (resume.basics.phone) { %>
+        <span
+          ><a href="tel:<%= resume.basics.phone %>"
+            ><i class="fas fa-phone"></i><%= resume.basics.phone %></a
+          ></span
+        >
+        <% } %> <% if (resume.basics.profiles && resume.basics.profiles.length >
+        0) { %> <% resume.basics.profiles.forEach(function(profile) { %> <% if
+        (profile.url && profile.username) { %>
+        <span
+          ><a href="<%= profile.url %>">
+            <% if (profile.network === 'GitHub') { %>
+            <i class="fab fa-github"></i>
+            <% } else if (profile.network === 'LinkedIn') { %>
+            <i class="fab fa-linkedin-in"></i>
+            <% } else if (profile.network === 'X') { %>
+            <i class="fab fa-twitter"></i>
+            <% } else { %>
+            <i class="fas fa-link"></i>
+            <% } %> <%= profile.username %>
+          </a></span
+        >
+        <% } %> <% }); %> <% } %>
+      </div>
+    </header>
+
+    <% if (resume.basics.summary) { %>
+    <section class="section">
+      <h2 class="section-title">Summary</h2>
+      <div class="summary"><%= resume.basics.summary %></div>
+    </section>
+    <% } %> <% if (resume.education && resume.education.length > 0) { %>
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+
+      <% resume.education.forEach(function(edu) { %>
+      <div class="education-item">
+        <div class="education-header">
+          <div class="education-left">
+            <% if (edu.studyType && edu.area) { %>
+            <div class="education-title">
+              <%= edu.studyType %> in <%= edu.area %>
+            </div>
+            <% } else if (edu.studyType) { %>
+            <div class="education-title"><%= edu.studyType %></div>
+            <% } else if (edu.area) { %>
+            <div class="education-title"><%= edu.area %></div>
+            <% } %> <% if (edu.institution) { %>
+            <div class="education-subtitle"><%= edu.institution %></div>
+            <% } %>
+          </div>
+          <div class="education-right">
+            <% if (edu.startDate || edu.endDate) { %>
+            <div>
+              <% if (edu.startDate) { %> <%= new
+              Date(edu.startDate).getFullYear() %> <% } %> <% if (edu.startDate
+              && edu.endDate) { %>-<% } %> <% if (edu.endDate) { %> <%= new
+              Date(edu.endDate).getFullYear() %> <% } %>
+            </div>
+            <% } %> <% if (edu.gpa) { %>
+            <div>GPA: <%= edu.gpa %></div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </section>
+    <% } %> <% if (resume.projects && resume.projects.length > 0) { %>
+    <section class="section">
+      <h2 class="section-title">Personal Projects</h2>
+
+      <% resume.projects.forEach(function(project) { %>
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-left">
+            <% if (project.name) { %>
+            <div class="project-title"><%= project.name %></div>
+            <% } %> <% if (project.description) { %>
+            <div class="project-subtitle"><%= project.description %></div>
+            <% } %>
+          </div>
+          <div class="project-right">
+            <div class="project-links">
+              <% if (project.github) { %>
+              <a href="<%= project.github %>"><i class="fab fa-github"></i></a>
+              <% } %> <% if (project.url) { %>
+              <a href="<%= project.url %>"
+                ><i class="fas fa-external-link-alt"></i
+              ></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% if (project.highlights && project.highlights.length > 0) { %>
+        <ul class="item-list">
+          <% project.highlights.forEach(function(highlight) { %>
+          <li><%= highlight %></li>
+          <% }); %>
+        </ul>
+        <% } %>
+      </div>
+      <% }); %>
+    </section>
+    <% } %> <% if (resume.work && resume.work.length > 0) { %>
+    <section class="section">
+      <h2 class="section-title">Work Experience</h2>
+
+      <% resume.work.forEach(function(job) { %>
+      <div class="work-item">
+        <div class="work-header">
+          <div class="work-left">
+            <% if (job.position) { %>
+            <div class="work-title"><%= job.position %></div>
+            <% } %> <% if (job.name) { %>
+            <div class="work-location"><%= job.name %></div>
+            <% } %>
+          </div>
+          <div class="work-right">
+            <% if (job.startDate || job.endDate) { %>
+            <div>
+              <% if (job.startDate) { %> <%= new
+              Date(job.startDate).getFullYear() %> <% } %> <% if (job.startDate
+              && job.endDate) { %>-<% } %> <% if (job.endDate) { %> <%= new
+              Date(job.endDate).getFullYear() %> <% } %>
+            </div>
+            <% } %> <% if (job.location) { %>
+            <div><i class="fas fa-map-marker-alt"></i> <%= job.location %></div>
+            <% } %>
+          </div>
+        </div>
+        <% if (job.highlights && job.highlights.length > 0) { %>
+        <ul class="item-list">
+          <% job.highlights.forEach(function(highlight) { %>
+          <li><%= highlight %></li>
+          <% }); %>
+        </ul>
+        <% } %>
+      </div>
+      <% }); %>
+    </section>
+    <% } %> <% if (resume.skills && resume.skills.length > 0) { %>
+    <section class="section">
+      <h2 class="section-title">Skills</h2>
+      <ul class="skills-list">
+        <% resume.skills.forEach(function(skill) { %> <% if (skill.name &&
+        skill.keywords && skill.keywords.length > 0) { %>
+        <li>
+          <strong><%= skill.name %>:</strong> <%= skill.keywords.join(', ') %>
+        </li>
+        <% } %> <% }); %>
+      </ul>
+    </section>
+    <% } %> <% if (resume.certificates && resume.certificates.length > 0) { %>
+    <section class="section">
+      <h2 class="section-title">Certificates</h2>
+      <% resume.certificates.forEach(function(cert) { %>
+      <div class="work-item">
+        <div class="work-header">
+          <div class="work-left">
+            <% if (cert.name) { %>
+            <div class="work-title"><%= cert.name %></div>
+            <% } %> <% if (cert.issuer) { %>
+            <div class="work-location"><%= cert.issuer %></div>
+            <% } %>
+          </div>
+          <div class="work-right">
+            <% if (cert.url) { %>
+            <div>
+              <a href="<%= cert.url %>"
+                ><i class="fas fa-external-link-alt"></i
+              ></a>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </section>
+    <% } %> <% if (resume.talks && resume.talks.length > 0) { %>
+    <section class="section">
+      <h2 class="section-title">Talks</h2>
+      <% resume.talks.forEach(function(talk) { %>
+      <div class="work-item">
+        <div class="work-header">
+          <div class="work-left">
+            <% if (talk.title) { %>
+            <div class="work-title"><%= talk.title %></div>
+            <% } %> <% if (talk.event) { %>
+            <div class="work-location"><%= talk.event %></div>
+            <% } %>
+          </div>
+          <div class="work-right">
+            <% if (talk.date) { %>
+            <div><%= new Date(talk.date).getFullYear() %></div>
+            <% } %> <% if (talk.slides) { %>
+            <div>
+              <a href="<%= talk.slides %>"
+                ><i class="fas fa-external-link-alt"></i
+              ></a>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </section>
+    <% } %>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeDarkReader();
+        addFavicon();
+        handlePrintParameter();
+        setupSmoothScroll();
+        setupEmailCopy();
+        setupPrintButton();
+        setupDarkModeButton();
+        setupGoogleTranslate();
+        setupScrollProgress();
+      });
+
+      function initializeDarkReader() {
+        const darkReaderScript = document.createElement("script");
+        darkReaderScript.src =
+          "https://cdn.jsdelivr.net/npm/darkreader@4.9.105/darkreader.min.js";
+        document.head.appendChild(darkReaderScript);
+      }
+
+      function addFavicon() {
+        const favicon = document.createElement("link");
+        favicon.rel = "icon";
+        favicon.href =
+          'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">👨🏻‍💻</text></svg>';
+        document.head.appendChild(favicon);
+      }
+
+      function handlePrintParameter() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("print") === "true") {
+          window.print();
+        }
+      }
+
+      function setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      }
+
+      function setupEmailCopy() {
+        const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+        emailLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const email = link.href.replace("mailto:", "");
+            navigator.clipboard.writeText(email).then(() => {
+              const originalText = link.textContent;
+              link.textContent = "Email copied!";
+              setTimeout(() => {
+                link.textContent = originalText;
+              }, 2000);
+            });
+          });
+        });
+      }
+
+      function setupPrintButton() {
+        const buttonContainer = document.createElement("div");
+        buttonContainer.className = "button-container";
+        document.body.appendChild(buttonContainer);
+
+        const printButton = document.createElement("button");
+        printButton.innerHTML = '<i class="fas fa-print"></i>';
+        printButton.className = "print-button";
+        printButton.title = "Print Resume";
+        buttonContainer.appendChild(printButton);
+
+        printButton.addEventListener("click", () => {
+          window.print();
+        });
+      }
+
+      function setupDarkModeButton() {
+        const buttonContainer = document.querySelector(".button-container");
+        const darkModeButton = document.createElement("button");
+        darkModeButton.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeButton.className = "print-button";
+        darkModeButton.title = "Toggle Dark Mode";
+        buttonContainer.appendChild(darkModeButton);
+
+        let isDarkMode = false;
+        darkModeButton.addEventListener("click", () => {
+          isDarkMode = !isDarkMode;
+          if (isDarkMode) {
+            DarkReader.enable({
+              brightness: 100,
+              contrast: 90,
+              sepia: 10,
+            });
+            darkModeButton.innerHTML = '<i class="fas fa-sun"></i>';
+          } else {
+            DarkReader.disable();
+            darkModeButton.innerHTML = '<i class="fas fa-moon"></i>';
+          }
+        });
+      }
+
+      function setupGoogleTranslate() {
+        // Add Google Translate script
+        const translateScript = document.createElement("script");
+        translateScript.src =
+          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.head.appendChild(translateScript);
+
+        // Create the div for Google Translate
+        const translateDiv = document.createElement("div");
+        translateDiv.id = "google_translate_element";
+        translateDiv.style.position = "fixed";
+        translateDiv.style.bottom = "20px";
+        translateDiv.style.right = "20px";
+        translateDiv.style.zIndex = "1000";
+        document.body.appendChild(translateDiv);
+
+        // Initialize Google Translate
+        window.googleTranslateElementInit = function () {
+          new google.translate.TranslateElement(
+            {
+              pageLanguage: "en",
+              includedLanguages:
+                "ar,zh-CN,fr,de,hi,id,it,ja,ko,pt,ru,es,th,tr,vi",
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            },
+            "google_translate_element"
+          );
+        };
+      }
+
+      function setupScrollProgress() {
+        // Create progress bar element
+        const progressBar = document.createElement("div");
+        progressBar.className = "scroll-progress";
+        document.body.appendChild(progressBar);
+
+        // Update progress bar on scroll
+        window.addEventListener("scroll", () => {
+          const windowHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          const progress = (window.scrollY / windowHeight) * 100;
+          progressBar.style.width = `${progress}%`;
+        });
+      }
+
+      // Add print button styles
+      const printStyle = document.createElement("style");
+      printStyle.textContent = `
+    .button-container {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        z-index: 1000;
+        display: flex;
+        gap: 10px;
+    }
+    .print-button {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background-color: #FF6B00;
+        z-index: 1001;
+        transition: width 0.1s ease;
+    }
+    @media print {
+        .button-container {
+            display: none;
+        }
+        .scroll-progress {
+            display: none;
+        }
+        #google_translate_element {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .print-button[title="Print Resume"] {
+            display: none;
+        }
+    }
+`;
+      document.head.appendChild(printStyle);
+    </script>
+  </body>
+</html>

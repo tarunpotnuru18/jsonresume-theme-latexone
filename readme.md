@@ -1,0 +1,1 @@
+# a latex like theme for json resume, huge thanks to milind bro

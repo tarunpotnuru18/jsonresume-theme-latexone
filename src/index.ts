@@ -8,9 +8,9 @@ const __dirname = dirname(__filename);
 const templatePath = resolve(__dirname, "../resume.template.ejs");
 // Resolve the template path relative to the current file location
 let template = readFileSync(templatePath, "utf-8");
-function Render(resume: any) {
+function render(resume: any) {
   const html = ejsRender(template, { resume });
   return html;
 }
 
-export { Render };
+export { render };

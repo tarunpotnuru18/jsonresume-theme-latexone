@@ -1,6 +1,6 @@
 {
   "name": "jsonresume-theme-latexone",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a theme for json resume",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -18,10 +18,10 @@
   "devDependencies": {
     "@types/ejs": "^3.1.5",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "@types/node": "^24.0.14"
   },
   "dependencies": {
-    "@types/node": "^24.0.14",
     "ejs": "^3.1.10"
   }
 }

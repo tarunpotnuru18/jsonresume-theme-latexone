@@ -1,6 +1,6 @@
 {
   "name": "jsonresume-theme-latexone",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a theme for json resume",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
